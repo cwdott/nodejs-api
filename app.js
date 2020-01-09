@@ -1,13 +1,16 @@
+// Import modules
 const express = require("express");
-const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-const db = mongoose.connection;
-const config = require("./config/config");
 const bodyParser = require("body-parser");
+
+// Input external files
+const config = require("./config/config");
 const routesPages = require("./routes/routes-pages");
 const routesAPI = require("./routes/routes-api");
 
+// Init the database. Settings are in config file
+const db = mongoose.connection;
 mongoose.connect(config.db.connectionString);
 
 db.on("error", () => {
@@ -16,6 +19,9 @@ db.on("error", () => {
 db.once("open", () => {
   console.log("Database connection successful");
 });
+
+// Init the app. Use EJS for templating components
+const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
