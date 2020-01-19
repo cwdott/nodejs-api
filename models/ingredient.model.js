@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 let IngredientSchema = new Schema(
   {
     name: { type: String, required: true, max: 100 },
+    brand: { type: String, max: 100 },
     calories: { type: Number },
     servingText: { type: String, max: 20 },
     servingAmount: { type: Number },
@@ -16,8 +17,6 @@ let IngredientSchema = new Schema(
     carbs: { type: Number },
     fiber: { type: Number },
     sugar: { type: Number },
-    sugarIncluded: { type: Number },
-    sugarAdded: { type: Number },
     protein: { type: Number }
   },
   {

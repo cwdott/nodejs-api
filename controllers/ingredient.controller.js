@@ -1,7 +1,7 @@
 const Ingredient = require("../models/ingredient.model");
 
-// CREATE a new Ingredient
-exports.ingredient_create = function(req, res, next) {
+// POST: CREATE a new Ingredient
+exports.ingredient_create = function (req, res, next) {
   console.log("creating new ingredient: ", req.body);
   let ingredient = new Ingredient({
     name: req.body.name,
@@ -22,7 +22,7 @@ exports.ingredient_create = function(req, res, next) {
     protein: req.body.protein
   });
 
-  ingredient.save(function(err) {
+  ingredient.save(function (err) {
     if (err) {
       return next(err);
     }
@@ -30,25 +30,25 @@ exports.ingredient_create = function(req, res, next) {
   });
 };
 
-// RETURN all Ingredients
-exports.ingredients_all = function(req, res, next) {
-  Ingredient.find(function(err, ingredients) {
+// GET: RETURN all Ingredients
+exports.ingredients_all = function (req, res, next) {
+  Ingredient.find(function (err, ingredients) {
     if (err) return next(err);
     res.send(ingredients);
   });
 };
 
-// RETURN one Ingredient by ID
-exports.ingredient_details = function(req, res, next) {
-  Ingredient.findById(req.params.id, function(err, ingredient) {
+// GET: RETURN one Ingredient by ID
+exports.ingredient_details = function (req, res, next) {
+  Ingredient.findById(req.params.id, function (err, ingredient) {
     if (err) return next(err);
     res.send(ingredient);
   });
 };
 
-// UPDATE one Ingredient by ID
-exports.ingredient_update = function(req, res, next) {
-  Ingredient.findOneAndUpdate(req.params.id, { $set: req.body }, function(
+// PUT: UPDATE one Ingredient by ID
+exports.ingredient_update = function (req, res, next) {
+  Ingredient.findOneAndUpdate(req.params.id, { $set: req.body }, function (
     err,
     product
   ) {
@@ -57,9 +57,9 @@ exports.ingredient_update = function(req, res, next) {
   });
 };
 
-// DELETE one Ingredient by ID
-exports.ingredient_delete = function(req, res, next) {
-  Ingredient.findByIdAndRemove(req.params.id, function(err) {
+// DELETE: DELETE one Ingredient by ID
+exports.ingredient_delete = function (req, res, next) {
+  Ingredient.findByIdAndRemove(req.params.id, function (err) {
     if (err) return next(err);
     res.send("Deleted successfully!");
   });
