@@ -12,9 +12,29 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
-<body class="bg-dark text-white">
+<body class="bg-dark">
+  <div class="container bg-light text-dark">
+    <!-- BEGIN: NAVIGATION -->
+    <nav class="navbar navbar-expand-md border-bottom">
+      <a class="navbar-brand" href="/">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="container">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/create">Create</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- END: NAVIGATION -->
+
 
     <div class="row text-center m-4">
       <div class="col">
@@ -76,21 +96,21 @@
           <div class="form-group row">
             <label for="fat" class="col-8 col-sm-3 col-form-label">Total Fat (g)</label>
             <div class="col-4 col-sm-9">
-              <input type="number" class="form-control" name="fat" placeholder="21" />
+              <input type="number" step="0.01" class="form-control" name="fat" placeholder="21" />
             </div>
           </div>
 
           <div class="form-group row">
             <label for="fatSaturated" class="col-8 col-sm-3 col-form-label">Saturated (g)</label>
             <div class="col-4 col-sm-9">
-              <input type="number" class="form-control" name="fatSaturated" placeholder="3.5" />
+              <input type="number" step="0.01" class="form-control" name="fatSaturated" placeholder="3.5" />
             </div>
           </div>
 
           <div class="form-group row">
             <label for="fatTrans" class="col-8 col-sm-3 col-form-label">Trans (g)</label>
             <div class="col-4 col-sm-9">
-              <input type="number" class="form-control" name="fatTrans" placeholder="0" />
+              <input type="number" step="0.01" class="form-control" name="fatTrans" placeholder="0" />
             </div>
           </div>
 
