@@ -49,9 +49,12 @@
               <th scope="col" style="width: 30%">Ingredient</th>
               <th scope="col">Brand</th>
               <th scope="col" style="width: 15%">
-                <a class="btn btn-success btn-block" href="#" role="button" id="btnFetchIngredients">
+                <button type="button" class="btn btn-success" id="btnFetchIngredients">
                   Fetch
-                </a>
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ingredientModal">
+                  Create
+                </button>
               </th>
             </tr>
           </thead>
@@ -65,6 +68,144 @@
     </div>
 
 
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="ingredientModal" tabindex="-1" role="dialog" aria-labelledby="ingredientModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ingredientModalLongTitle">Create a new ingredient!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/api/ingredients" method="POST" autocomplete="off">
+
+            <div class="form-group row mb-0">
+              <label for="name" class="col-3 col-form-label">Name</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" name="name"
+                  placeholder="Honey Roasted Peanuts" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="brand" class="col-3 col-form-label">Brand</label>
+              <div class="col-9">
+                <input type="text" class="form-control form-control-sm" name="brand" placeholder="President's Choice" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="servingText" class="col-3 col-form-label">Serving</label>
+              <div class="col-sm-5 mb-sm-1 mb-md-0 pr-sm-1">
+                <input type="text" class="form-control form-control-sm" name="servingText"
+                  placeholder="Per 1/3 cup (50g)" />
+              </div>
+              <div class="col-sm-2 mb-sm-1 mb-md-0 px-sm-1">
+                <input type="text" class="form-control form-control-sm" name="servingAmount" placeholder="50" />
+              </div>
+              <div class="col-sm-2 mb-sm-1 mb-md-0 pl-sm-1">
+                <select class="form-control form-control-sm" name="servingUnit">
+                  <option disabled class="bg-dark text-white">Solids</option>
+                  <option selected>g</option>
+                  <option>kg</option>
+                  <option>lbs</option>
+                  <option>tsp</option>
+                  <option>tbsp</option>
+                  <option disabled class="bg-dark text-white">Liquids</option>
+                  <option>oz</option>
+                  <option>mL</option>
+                  <option>L</option>
+                  <option>fl oz</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="calories" class="col-8 col-sm-3 col-form-label">Calories</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" class="form-control form-control-sm" name="calories" placeholder="300" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="fat" class="col-8 col-sm-3 col-form-label">Total Fat (g)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" step="0.01" class="form-control form-control-sm" name="fat" placeholder="21" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="fatSaturated" class="col-8 col-sm-3 col-form-label">Saturated (g)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" step="0.01" class="form-control form-control-sm" name="fatSaturated"
+                  placeholder="3.5" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="fatTrans" class="col-8 col-sm-3 col-form-label">Trans (g)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" step="0.01" class="form-control form-control-sm" name="fatTrans" placeholder="0" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="cholesterol" class="col-8 col-sm-3 col-form-label">Cholesterol (mg)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" class="form-control form-control-sm" name="cholesterol" placeholder="0" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="sodium" class="col-8 col-sm-3 col-form-label">Sodium (mg)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" class="form-control form-control-sm" name="sodium" placeholder="55" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="carbs" class="col-8 col-sm-3 col-form-label">Carbohydrates (g)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" class="form-control form-control-sm" name="carbs" placeholder="17" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="fiber" class="col-8 col-sm-3 col-form-label">Fiber (g)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" class="form-control form-control-sm" name="fiber" placeholder="3" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="sugar" class="col-8 col-sm-3 col-form-label">Sugar (g)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" class="form-control form-control-sm" name="sugar" placeholder="7" />
+              </div>
+            </div>
+
+            <div class="form-group row mb-0">
+              <label for="protein" class="col-8 col-sm-3 col-form-label">Protein (g)</label>
+              <div class="col-4 col-sm-9">
+                <input type="number" class="form-control form-control-sm" name="protein" placeholder="10" />
+              </div>
+            </div>
+
+            <!--Other fields-->
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
