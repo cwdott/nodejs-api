@@ -5,6 +5,7 @@ exports.ingredient_create = function (req, res, next) {
   console.log("creating new ingredient: ", req.body);
   let ingredient = new Ingredient({
     name: req.body.name,
+    brand: req.body.brand,
     calories: req.body.calories,
     servingText: req.body.servingText,
     servingAmount: req.body.servingAmount,

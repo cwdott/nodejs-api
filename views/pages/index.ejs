@@ -57,7 +57,7 @@
           </thead>
           <tbody>
             <tr>
-              <td colspan="4" id="placeholder">No ingredients found.</td>
+              <td colspan="4" id="placeholder">No ingredients found. Click Fetch to populate.</td>
             </tr>
           </tbody>
         </table>
@@ -70,15 +70,18 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    // Global variable containing our ingredients.
+    // Doesn't seem like the best way to go about this...
+    let ingredients = {};
+
     getIngredients = () => {
       fetch('/api/ingredients')
-        .then(res => res.json()) //response type
-        .then(data => ingredients); //log the data;
+        .then(res => res.json())
+        .then(data => ingredients = data);
     };
 
     init = () => {
       getIngredients();
-      updateElement("ingredientsTable");
     }
 
     document.getElementById("btnFetchIngredients").addEventListener("click", function (event) {
@@ -92,14 +95,21 @@
     };
 
     updateElement = (el) => {
-      if (ingredients.length > 0) {
-        switch (el) {
-          case "ingredientsTable": {
+
+      switch (el) {
+        case "ingredientsTable": {
+          if (ingredients.length > 0) {
             let table = document.getElementById(el);
+            let thead = table.getElementsByTagName('thead')[0];
+            let tbody = table.getElementsByTagName('tbody')[0];
+
             table.removeChild(tbody);
-            var tbody = document.createElement('tbody');
-            data.forEach(function (ingredient) {
-              let tr = table.insertRow(-1);
+            table.appendChild(document.createElement("tbody"));
+
+            tbody = table.getElementsByTagName('tbody')[0];
+
+            ingredients.forEach(function (ingredient) {
+              let tr = tbody.insertRow(-1);
               tr.insertCell(-1).innerHTML = ingredient.name || "Name missing";
               tr.insertCell(-1).innerHTML = ingredient.brand || "Brand missing";
               tr.insertCell(-1).innerHTML = `
@@ -111,10 +121,10 @@
               </a>
               `
             });
-            table.replaceChild(tbody, old_tbody)
           }
         }
       }
+
     };
   </script>
 </body>
